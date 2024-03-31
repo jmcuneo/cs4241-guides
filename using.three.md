@@ -76,7 +76,7 @@ const app = {
     this.scene.add( pointLight )
   },
 
-    // Creates the torus knot geometry that we'll display in our scene 
+  // Creates the torus knot geometry that we'll display in our scene 
   createKnot() {
     const knotgeo = new THREE.TorusKnotGeometry( 10, .5, 128, 16, 5, 21 )
 
@@ -89,7 +89,7 @@ const app = {
     return knot
   },
 
-    // Animation loop
+  // Animation loop
   render() {
     // Slowing increment the rotation angle over time to animate the knot
     this.knot.rotation.x += .025
