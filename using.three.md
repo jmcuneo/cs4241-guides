@@ -70,7 +70,7 @@ const app = {
     const pointLight = new THREE.DirectionalLight( 0xcccccc, 2 )  
 
     // Set the point light's position
- 	pointLight.position.z = 100
+    pointLight.position.z = 100
 
     // Add the light to the scene
     this.scene.add( pointLight )
