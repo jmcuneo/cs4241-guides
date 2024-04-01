@@ -11,6 +11,8 @@ The browser includes an audio API that is very capable. You can either assemble 
 You can run the example below directly in the console in Chrome (Firefox does not support this). However, when actually creating web pages, you need to create your `AudioContext` in response to user interaction. This is to avoid, for example, unscrupulous developers playing loud advertisements as soon as a site is loaded without any user permission. Putting everything below inside a `window.onclick` event handler is a simple solution for this.
 
 ```js
+// Main interface between JavaScript and the audio output
+// Also a factory to create the other objects for our audio script
 audioCtx = new AudioContext()
 osc = audioCtx.createOscillator()
 osc.connect( audioCtx.destination )
@@ -27,7 +29,6 @@ osc.frequency.value = 220
 // to a new frequency. Time is measured in seconds oscce
 // the audio context was first created, to get a relative time value
 // we can use the ctx.currentTime property
-
 osc.frequency.linearRampToValueAtTime( 1760, audioCtx.currentTime + 30 )
 
 // to stop...
@@ -45,6 +46,7 @@ audioCtx = new AudioContext()
 osc  = audioCtx.createOscillator()
 gainNode = audioCtx.createGain()
 
+// Allows us to control the volume
 osc.connect( gainNode )
 gainNode.connect( audioCtx.destination )
 
@@ -63,7 +65,11 @@ One more example, let's add a lowpass filter. This will attenuate the frequencie
 audioCtx = new AudioContext()
 osc  = audioCtx.createOscillator()
 
-// filters don't work well with sine oscillators...
+// Filters don't work well with sine oscillators.
+// The smoother the wave, the less frequency information is in it,
+// so we need a wave with multiple overlaid frequencies.
+// In this case, a "sawtooth" wave ramps up linearly and then abruptly
+// cuts off, creating a wave with a bright sound and lots of overlaid frequencies
 osc.type = 'sawtooth'
 
 gainNode = audioCtx.createGain()
@@ -88,7 +94,8 @@ Classic lowpass filter sweep, using the same `linearRampToValueAtTime` method we
 audioCtx = new AudioContext()
 osc  = audioCtx.createOscillator()
 
-// filters don't work well with sine oscillators...
+// filters don't work well with sine oscillators
+// (See the previous example for more context.)
 osc.type = 'sawtooth'
 
 gainNode = audioCtx.createGain()
