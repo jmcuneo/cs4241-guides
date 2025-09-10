@@ -90,19 +90,6 @@ app.post( '/submit', ( req, res ) => {
 const listener = app.listen( process.env.PORT || 3000 )
 ```
 
-Once you run this server, you'll see an error; we're not delivering any HTML files right now. Let's just test this file from the developer's console to make sure it works before we incoporate a GUI.
-
-```js
-// run in developer's console
-fetch( '/submit', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify(['test'])
-})
-.then( response => response.json() )
-.then( console.log ) 
-```
-
 ## But there's a middleware for grabbing JSON, right?
 Yes indeed. `express.json()` will handle this nicely for us. There's a [list of other express middleware](https://expressjs.com/en/resources/middleware.html) that's worth checking out. *IMPORTANT:* For JSON data, the body-parser middleware will only take action if the data sent to the server is passed with a `Content-Type` header of `application/json`.
 
