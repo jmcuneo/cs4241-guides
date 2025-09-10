@@ -104,7 +104,7 @@ fetch( '/submit', {
 ```
 
 ## But there's a middleware for grabbing JSON, right?
-Yes indeed. `express.json()` will handle this nicely for us. There's a [list of other express middleware](https://expressjs.com/en/resources/middleware.html) that's worht checking out. *IMPORTANT:* For JSON data, the body-parser middleware will only take action if the data sent to the server is passed with a `Content-Type` header of `application/json`.
+Yes indeed. `express.json()` will handle this nicely for us. There's a [list of other express middleware](https://expressjs.com/en/resources/middleware.html) that's worth checking out. *IMPORTANT:* For JSON data, the body-parser middleware will only take action if the data sent to the server is passed with a `Content-Type` header of `application/json`.
 
 For example:
 ```js
