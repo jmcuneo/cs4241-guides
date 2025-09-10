@@ -90,8 +90,8 @@ app.post( '/submit', ( req, res ) => {
 const listener = app.listen( process.env.PORT || 3000 )
 ```
 
-## But there's a middleware for grabbing JSON, right?
-Yes indeed. `express.json()` will handle this nicely for us. There's a [list of other express middleware](https://expressjs.com/en/resources/middleware.html) that's worth checking out. *IMPORTANT:* For JSON data, the body-parser middleware will only take action if the data sent to the server is passed with a `Content-Type` header of `application/json`.
+## Is there pre-existing middleware for working with JSON?
+Yes there is. `express.json()` will handle this nicely for us. There's a [list of other express middleware](https://expressjs.com/en/resources/middleware.html) that's worth checking out. *IMPORTANT:* For JSON data, the body-parser middleware will only take action if the data sent to the server is passed with a `Content-Type` header of `application/json`.
 
 For example:
 ```js
