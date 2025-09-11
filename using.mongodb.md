@@ -67,37 +67,67 @@ The Atlas system uses MongoDB 6.x by default, which [requires us to use at least
 Make sure to only include the final comma in the above example if you are putting this somewhere in the middle of your package.json file (in which case there is more information to come); otherwise you should omit it.
   
 ### Basic connection:
-Make sure to replace `XXXtest` and `XXXtodos` with the name of your database and collection respectively.
+Make sure to replace `datatest` and `test` with the name of your database and collection respectively.
 
 ```js
-const express = require("express"),
-      { MongoClient, ObjectId } = require("mongodb"),
-      app = express()
+const express    = require('express'),
+      app        = express(),
+      dreams     = []
 
-app.use(express.static("public") )
-app.use(express.json() )
+app.use( express.static( 'public' ) )
+app.use( express.static( 'views'  ) )
 
-const uri = `mongodb+srv://${process.env.USERNM}:${process.env.PASS}@${process.env.HOST}`
-const client = new MongoClient( uri )
+app.use( express.json() )
 
-let collection = null
+app.post( '/submit', (req, res) => {
+      dreams.push( req.body.newdream )
+      res.writeHead( 200, { 'Content-Type': 'application/json' })
+      res.end( JSON.stringify( dreams ) )
+})
+
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = `mongodb+srv://${process.env.USERNM}:${process.env.PASS}@${process.env.HOST}/?retryWrites=true&w=majority&appName=Cluster0`;
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 
 async function run() {
-    await client.connect()
-    collection = await client.db("datatest").collection("test")
+  try {
+    await client.connect(
+	err => {
+		console.log("err :", err);
+		client.close();
+	}
 
-    // route to get all docs
+    );  
+    const collection = client.db("myFavoriteDatabase").collection("myCollection0");
+    // Send a ping to confirm a successful connection
+    await client.db("myFavoriteDatabase").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
     app.get("/docs", async (req, res) => {
         if (collection !== null) {
             const docs = await collection.find({}).toArray()
             res.json( docs )
         }
     })
+
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
 }
+run().catch(console.dir);
 
-run()
+app.listen( process.env.PORT || 3000)	
 
-app.listen(3000)
 ```
 
 ### Add middleware to check connection
