@@ -22,24 +22,23 @@
 ## Setting up a free MongoDB account
   - Most hosting services (like Render, Heroku, etc.) do not provide a running MongoDB database. You have to provide an external DB.
     - Some VM providers (like DigitalOcean) will give you MongoDB in addition to Node
-  - We'll use [MongoDB.Atlas](https://www.mongodb.com/download-center) to get a free database cluster (with backup redundancy) on a cloud provider
+  - We'll use [MongoDB](https://www.mongodb.com/) to get a free database cluster (with backup redundancy) on a cloud provider
     - Your choice of AWS, Google Cloud Platform, or Microsoft Azure, but MongoDB Atlas abstracts the differences away.
   - After you create your account, you need to complete five steps before accessing your database from Node:
     1. Define a cluster
     2. Define account(s) to access your cluster
        - `Security > Database Access`
-    4. Define which IP addresses can access your cluster (whitelist)
-      - Use `0.0.0.0/0` to whitelist all connections, which is fine for this class
+    3. Define which IP addresses can access your cluster (whitelist)
+      - `Security > Network Access`
+      - Use `0.0.0.0` to whitelist all connections, which is fine for this class
       - If you have a static IP address for your Node.js server, you would normally want to enter that here.
-    5. Make a database
-      - `Deployment > Database > Create`
-    6. Get the correct URL to access your database
+    4. Make a database
+      - `Clusters > Browse Collections > Create Database`
+    5. Get the correct URL to access your database
       - We'll need to store this URL along with authentication in a `.env` file in Render
-      - You can find the connection information at `Database > Collections > Cmd Line Tools > Connect To Your Cluster` 
+      - You can find the connection information at `Clusters > Connect > Drivers` 
     6. (optional) We can also initialize our data using the Atlas web API
 
-You can also do steps 1-4 from the Project Quickstart when you first create your Atlas account and a new project.
-    
 ## Using the MongoDB core driver
   - There are two main ways to use MongoDB:
     1. [The MongoDB Node.js driver](https://github.com/mongodb/node-mongodb-native)
@@ -48,16 +47,16 @@ You can also do steps 1-4 from the Project Quickstart when you first create your
   - In your project, create a simple `.env` file to hold your authentication data. *MAKE SURE TO PUT THE HOST VALUE IN QUOTATION MARKS*:
 
 ```
-USER=xxxxx
+USERNM=xxxxx
 PASS=xxxxx
 HOST="cluster0-xxxxxxxx.mongodb.net"
 ```
 
   You can also use the [dotenv library](https://www.npmjs.com/package/dotenv).
-  - You can get all of the above information by going to Atlas > Clusters > Connect > Connect Your Application
-  - Take a look at the [Collection API](http://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html) to get a feel for what is possible.
+  - You can get all of the above information by going to Clusters > Connect > Drivers
+  - Take a look at the [Collection API](https://mongodb.github.io/node-mongodb-native/6.19/classes/Collection.html) to get a feel for what is possible.
 
-The Atlas system uses MongoDB 6.x by default, which [requires us to use at least version 16 of Node.js](https://www.mongodb.com/docs/drivers/node/current/compatibility/). We can change our Node version in Glitch by adding a the following field to `package.json`:
+The Atlas system uses MongoDB 6.x by default, which [requires us to use at least version 16 of Node.js](https://www.mongodb.com/docs/drivers/node/current/compatibility/). We can change our Node version by adding the following field to `package.json`:
 
 ```json
   "engines": {
@@ -78,7 +77,7 @@ const express = require("express"),
 app.use(express.static("public") )
 app.use(express.json() )
 
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@${process.env.HOST}`
+const uri = `mongodb+srv://${process.env.USERNM}:${process.env.PASS}@${process.env.HOST}`
 const client = new MongoClient( uri )
 
 let collection = null
@@ -125,7 +124,7 @@ app.post( '/add', async (req,res) => {
 Note that the value returned from this includes a unique ID we can use to reference the newly added object in the database. We'll use that to remove an object below.
 
 ### Add a route to remove a todo
-All documents get a unique id, we'll use that as the key to remove a particular document. However, we need to wrap the id value using the `mongodb.ObjectID()` function in order to correctly find it. We can also use [query operators](https://docs.mongodb.com/manual/reference/operator/query/#query-selectors) to find particular documents for removal that match specified conditions.
+All documents get a unique id, and we'll use that as the key to remove a particular document. However, we need to wrap the id value using the `mongodb.ObjectID()` function in order to correctly find it. We can also use [query operators](https://docs.mongodb.com/manual/reference/operator/query/#query-selectors) to find particular documents for removal that match specified conditions.
 
 ```js
 // assumes req.body takes form { _id:5d91fb30f3f81b282d7be0dd } etc.
