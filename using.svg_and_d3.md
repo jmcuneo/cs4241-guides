@@ -119,7 +119,7 @@ OK, let's use that same data and make something with an `<svg>` element.
 
 In this visualization, overlapping circles will display the the currency comparison via color. Similar our last visualization, this use of color is only meant to be an example and is relatively meaningless.
 
-To start, we create an `<svg>` element using the SVG namespace, append it to `document.body`, and use d3 to select the resulting element. Then we grab our data with fetch and teh same basic JSON parsing setup we used in our last example. This time, instead of creating `<divs>` using our join, we'll use `<circle>` elements. We then set the values of various attributes for each circle. Note that for the `cx` property, which defines the x position of the circle's center, we pass a function that accepts both a data point and the `index` of each element that is being processed; the index is what we use to position the circle sequentially from left to right.
+To start, we create an `<svg>` element using the SVG namespace, append it to `document.body`, and use d3 to select the resulting element. Then we grab our data with fetch and the same basic JSON parsing setup we used in our last example. This time, instead of creating `<divs>` using our join, we'll use `<circle>` elements. We then set the values of various attributes for each circle. Note that for the `cx` property, which defines the x position of the circle's center, we pass a function that accepts both a data point and the `index` of each element that is being processed; the index is what we use to position the circle sequentially from left to right.
   
 ```js
 window.addEventListener( 'load', () => {
@@ -183,6 +183,4 @@ window.addEventListener( 'load', () => {
 })
 ```
 
-Really, there's not much difference here outside of the grouping. 
-The process of creating the text is almost the same as before, except we're using the `.text()` method to provide 
-the `.innerText` of each `<text>` element, and giving it a x and y offset relative to the associated circle.
+Really, there's not much difference here outside of the grouping. The process of creating the text is almost the same as before, except we're using the `.text()` method to provide the `.innerText` of each `<text>` element, and giving it a x and y offset relative to the associated circle.

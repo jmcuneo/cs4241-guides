@@ -163,13 +163,9 @@ window.onload = ()=> app.init()
 ```
 
 ## Using Vite
-Vite let's us use our ES Module syntax but figures out exactly what JS (and CSS too!) we need to put on the server and wraps it all up nicely for us. 
-Otherwise you can quickly get into a situation where you're having to upload your entire `node_modules` folder to your server... take a look 
-inside of that folder, it's usually pretty gnarly. Vite will figure out exactly what JS is needed for a given project and make it 
-easily available for you. Vite has a [great guide for getting started](https://vitejs.dev/guide/) with it.
+Vite let's us use our ES Module syntax but figures out exactly what JS (and CSS too!) we need to put on the server and wraps it all up nicely for us. Otherwise you can quickly get into a situation where you're having to upload your entire `node_modules` folder to your server... take a look inside of that folder, it's usually pretty gnarly. Vite will figure out exactly what JS is needed for a given project and make it easily available for you. Vite has a [great guide for getting started](https://vitejs.dev/guide/) with it.
 
-1. Run `npm create vite@latest` from a terminal. Choose "vanilla" and "javascript" for the template, but note there are also templates for building projects 
-using React and Svelte, two frameworks we'll be discussing in class on Monday.
+1. Run `npm create vite@latest` from a terminal. Choose "vanilla" and "javascript" for the template, but note there are also templates for building projects using React and Svelte, two frameworks we'll be discussing in class..
 
 2. `cd` into the generated directory and install three `npm install three`
 
@@ -183,4 +179,4 @@ import * as THREE from 'three'
 
 4. Take a look at all the files that have been loaded in the Sources tab of your browser's developer tools to get a sense of the magic that is happening.
 
-5. OK, pretty cool, but chances are you'll want to run your own server to serve up your site, and you definitely don't want to be running the Vite dev server in production. We can tell Vite to wrap everything up nice and neat for us using `npm run build`. Vite then creates a `dist` folder; if you launch a standard server you can view all your files. You could also upload your dist folder to Glitch / Heroku etc. 
+5. OK, pretty cool, but chances are you'll want to run your own server to serve up your site, and you definitely don't want to be running the Vite dev server in production. We can tell Vite to wrap everything up nice and neat for us using `npm run build`. Vite then creates a `dist` folder; if you launch a standard server you can view all your files. You could also upload your dist folder to your hosting service. 

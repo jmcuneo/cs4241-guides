@@ -85,7 +85,6 @@ app.post( '/submit', (req, res) => {
       res.end( JSON.stringify( dreams ) )
 })
 
-
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = `mongodb+srv://${process.env.USERNM}:${process.env.PASS}@${process.env.HOST}/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -98,6 +97,8 @@ const client = new MongoClient(uri, {
   }
 });
 
+let collection = null
+
 async function run() {
   try {
     await client.connect(
@@ -107,23 +108,24 @@ async function run() {
 	}
 
     );  
-    const collection = client.db("myFavoriteDatabase").collection("myCollection0");
+    collection = client.db("myFavoriteDatabase").collection("myCollection0");
     // Send a ping to confirm a successful connection
     await client.db("myFavoriteDatabase").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-    app.get("/docs", async (req, res) => {
-        if (collection !== null) {
-            const docs = await collection.find({}).toArray()
-            res.json( docs )
-        }
-    })
-
-  } finally {
+ } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
   }
 }
+
+app.get("/docs", async (req, res) => {
+    if (collection !== null) {
+        const docs = await collection.find({}).toArray()
+        res.json( docs )
+    }
+})
+
 run().catch(console.dir);
 
 app.listen( process.env.PORT || 3000)	

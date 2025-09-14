@@ -221,11 +221,7 @@ draw()
 ```
 
 ## Loading / visualizing audiofiles
-We can create an audiofile visualizer the exact same way as above,
-except instead of using an oscillator we're going to load an audiofile
-using the `<audio>` element and the `MediaElementSource` node of the
-Web Audio API. You can then connect that `MediaElementSource` node to
-the analyser node like we did with the oscillator in our previous examples.
+We can create an audiofile visualizer the exact same way as above, except instead of using an oscillator we're going to load an audiofile using the `<audio>` element and the `MediaElementSource` node of the Web Audio API. You can then connect that `MediaElementSource` node to the analyser node like we did with the oscillator in our previous examples.
 
 ```js
 ctx = new AudioContext()
@@ -263,10 +259,6 @@ app.listen( 3000 )
 audioElement.src = 'media/somefile.mp3'
 audioElement.play()
 ```
-
-One last gotcha to  note... if you're using Glitch to host your project, you need to change the [crossOrigin property](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to load audiofiles from Glitch's asset server:
-
-`audioElement.crossOrigin = 'anonymous'`
 
 ### All together now...
 

@@ -10,8 +10,7 @@
 
 Two options for dealing with ws:
 [ws](https://www.npmjs.com/package/ws) - A node package for creating servers that understand the WebSocket protocol
-[express-ws](https://www.npmjs.com/package/express-ws) - A node package for handling WebSocket routes using standard
-Express APIs. 
+[express-ws](https://www.npmjs.com/package/express-ws) - A node package for handling WebSocket routes using standard Express APIs. 
 
 We'll use `ws`... just because that's what I'm more familiar with. `express-ws` looks like a great option though!
 
@@ -20,9 +19,7 @@ To setup the project:
 2. `cd` into the new directory, and run `npm install` to get all the Vite dependencies
 3. Get our express / websocket dependencies: `npm install express vite-express ws`
 
-In order to get our setup to work with the Vite dev server, we have to `bind` ViteExpress to our http server instead
-of having ViteExpress do the listening itself. Create a `server.js` file in the top level of your project directory and paste
-the following server code inside:
+In order to get our setup to work with the Vite dev server, we have to `bind` ViteExpress to our http server instead of having ViteExpress do the listening itself. Create a `server.js` file in the top level of your project directory and paste the following server code inside:
 
 ```js
 /* 
@@ -98,9 +95,7 @@ In the root level of your Vite project, run `npm run dev`. In a separate termina
 
 Open up the app by pointing your browser to `http://localhost:PORT`, where `PORT` is the port number Vite gave you when you ran `npm run dev`. If you open the Svelte app in two different tabs / browsers you'll be able to see that you can send messages back and forth. Realtime communication is ready to go.
 
-There are lots of applications where a simple relay server can be useful with WebSocket messages. For example, we can use the exact same 
-server to make a simple “drawing” application. We’ll create a `<canvas>` object that fills the entire window, and then send the current 
-mouse position whenever the window is clicked. We’ll then add code to take any message received and draw a box at the provided location.
+There are lots of applications where a simple relay server can be useful with WebSocket messages. For example, we can use the exact same server to make a simple “drawing” application. We’ll create a `<canvas>` object that fills the entire window, and then send the current mouse position whenever the window is clicked. We’ll then add code to take any message received and draw a box at the provided location.
 
 ```html
 <html lang="en">

@@ -17,8 +17,7 @@ First we have a simple login page, no client-side JS required. Note that the "na
 </html>
 ```
 
-Below is an example server to process logins from the above HTML page using cookies. You can assume `main.html`
-is any arbitrary HTML page that shows content once the login is complete.
+Below is an example server to process logins from the above HTML page using cookies. You can assume `main.html` is any arbitrary HTML page that shows content once the login is complete.
 
 ```js
 const express = require( 'express' ),
@@ -73,7 +72,3 @@ app.use( express.static('public') )
 
 app.listen( 3000 )
 ```
-
-One aspect of this example that is problematic is that we don't receive any feedback when an incorrect login takes place. For a bit more complex
-example that uses a HTML template, try [this example on Glitch](https://glitch.com/edit/#!/webware-express-cookies-handlebars) that can selectively place
-different messages into pages using server-side rendering.

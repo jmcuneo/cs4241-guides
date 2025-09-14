@@ -1,9 +1,7 @@
 # Three.js
 This example illustrates using [three.js](threejs.org), with a quick example of [tweakpane](https://cocopon.github.io/tweakpane/) to control it.
 
-In three.js, we'll make a *scene*, which consists of geometries and lights. We then pick a rendering engine; WebGL is the most common
-candidate, but you could also render to SVG or using the newer WebGPU API. We'll also create a camera. Once all these assets are in place,
-we can tell our *renderer* to render a specific *scene* (geometries and lights) using a specific *camera*.
+In three.js, we'll make a *scene*, which consists of geometries and lights. We then pick a rendering engine; WebGL is the most common candidate, but you could also render to SVG or using the newer WebGPU API. We'll also create a camera. Once all these assets are in place, we can tell our *renderer* to render a specific *scene* (geometries and lights) using a specific *camera*.
 
 We'll keep our html file simple:
 
@@ -19,12 +17,9 @@ We'll keep our html file simple:
 
 ```
 
-Our `main.js` script will use JS modules from the [unpkg CDN](https://unpkg.com). In order to view the page properly you'll
-need to run it with a web server. [http-server](https://github.com/http-party/http-server) is a simple choice for this. Run
-the following command to install and start it: `npx http-server .`
+Our `main.js` script will use JS modules from the [unpkg CDN](https://unpkg.com). In order to view the page properly you'll need to run it with a web server. [http-server](https://github.com/http-party/http-server) is a simple choice for this. Run the following command to install and start it: `npx http-server .`
 
-Now create the JS file below, and then open up `http://127.0.0.1:8080` in your browser. `8080` is the default port used
-by http-server.
+Now create the JS file below, and then open up `http://127.0.0.1:8080` in your browser. `8080` is the default port used by http-server.
 
 ```js
 // import our three.js reference

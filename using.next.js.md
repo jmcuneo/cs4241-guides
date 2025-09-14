@@ -5,8 +5,7 @@ This tutorial is simplified / adapted from the official [Next.js tutorial](https
 First, initialize your project by running
 `npx create-next-app`
 
-- `cd` into the new folder that you created, and run `npm run dev`. This will start the Next.js development
-server. Go to `http://localhost:3000` to see the page running.
+- `cd` into the new folder that you created, and run `npm run dev`. This will start the Next.js development server. Go to `http://localhost:3000` to see the page running.
 
 - Try making some simple edits to `pages/index.js` to see the the page automatically updated. 
 
