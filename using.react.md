@@ -24,7 +24,7 @@ You should then see something like the following:
 Congratulations! You've just created your first React project with Vite! Go to the specified localhost URL in your browser to see it.
 
 # Server
-The demo server for this example code has three routes to read, add, and update todos that are stored in memory. Make sure this file is placed and run in the top-level of your React project. Make sure to install both `express` and `vite-express` first!
+The demo server for this example code has three routes to read, add, and update todos that are stored in memory. Place this file in the top-level of your React project. Make sure to install both `express` and `vite-express` first!
 
 ```js
 import express from  'express'
