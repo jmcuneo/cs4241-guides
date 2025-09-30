@@ -59,7 +59,7 @@ ViteExpress.bind( app, server )
 ```
 
 ## Svelte Client
-In the root level of your Vite project, run `npm run dev`. In a separate terminal window, go ahead and start your new server with `node server.js`. With the Vite development server running, replace all the code in your App.svelte component with the following:
+Replace all the code in your App.svelte component with the following:
 
 ```js
 <script>
@@ -92,10 +92,11 @@ In the root level of your Vite project, run `npm run dev`. In a separate termina
   <h3>{msg}</h3>
 {/each}
 ```
-
-Open up the app by pointing your browser to `http://localhost:PORT`, where `PORT` is the port number Vite gave you when you ran `npm run dev`. If you open the Svelte app in two different tabs / browsers you'll be able to see that you can send messages back and forth. Realtime communication is ready to go.
+In the root level of your Vite project, run `npm run dev`. In a separate terminal window, go ahead and start your new server with `node server.js`. With the Vite development server running, open up the app by pointing your browser to `http://localhost:PORT`, where `PORT` is the port number Vite gave you when you ran `npm run dev`. If you open the Svelte app in two different tabs / browsers you'll be able to see that you can send messages back and forth. Realtime communication is ready to go.
 
 There are lots of applications where a simple relay server can be useful with WebSocket messages. For example, we can use the exact same server to make a simple “drawing” application. We’ll create a `<canvas>` object that fills the entire window, and then send the current mouse position whenever the window is clicked. We’ll then add code to take any message received and draw a box at the provided location.
+
+To run this example, clear your App.svelte file and replace the contents of index.html with the code below:
 
 ```html
 <html lang="en">
